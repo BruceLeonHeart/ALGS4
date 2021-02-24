@@ -14,15 +14,17 @@ public class Stack<Item> implements Iterable<Item> {
 
     private class ReverseArrayIterator implements Iterator<Item>
     {
-        private int i = N;
+        private Node current = first;
         @Override
         public boolean hasNext() {
-            return i > 0 ;
+            return current!=null;
         }
 
         @Override
         public Item next() {
-            return null;
+            Item item = current.item;
+            current = current.next;
+            return item;
         }
 
         @Override
@@ -56,17 +58,11 @@ public class Stack<Item> implements Iterable<Item> {
     public boolean isEmpty()
     {
         return N==0;
+        //return first==null;
     }
     public int size()
     {
         return N;
     }
-    private void resize(int max)
-    {
-        Item[] temp = (Item[]) new Object[max];
-        for (int i = 0; i < N; i++) {
-            temp[i] = a[i];
-        }
-        a = temp;
-    }
+
 }
